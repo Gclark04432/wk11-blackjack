@@ -47,20 +47,20 @@ public class GameTest {
 //        assertEquals(20, player1.cardCount());
 //        assertEquals(20, player2.cardCount());
 //    }
+//
+//    @Test
+//    public void gameCanCheckDraw(){
+//        player1.takeCard(highCard);
+//        player2.takeCard(highCard);
+//        assertTrue(game.checkDraw());
+//    }
 
-    @Test
-    public void gameCanCheckDraw(){
-        player1.takeCard(highCard);
-        player2.takeCard(highCard);
-        assertTrue(game.checkDraw());
-    }
-
-    @Test
-    public void gameCanCheckWinner(){
-        player1.takeCard(highCard);
-        player2.takeCard(lowCard);
-        assertEquals(player1, game.checkWinner());
-    }
+//    @Test
+//    public void gameCanCheckWinner(){
+//        player1.takeCard(highCard);
+//        player2.takeCard(lowCard);
+//        assertEquals(player1, game.checkWinner());
+////    }
 
     @Test
     public void playerStartsWith2Cards() {
@@ -68,5 +68,11 @@ public class GameTest {
         assertEquals(2, player1.cardCount());
         assertEquals(2, player2.cardCount());
     }
+
+//    @Test
+//    public void gameCanStartWithOneDealerAndOnePlayer() {
+////        game.start();
+////        assertEquals(2, dealer.cardCount());
+//    }
 
 }

@@ -7,4 +7,12 @@ public class PlayerScorerByRankOrder implements IScorer {
         }
         return score;
     }
+
+    public int getScore(Dealer dealer){
+        int score = 0;
+        for(Card card : dealer.getHand()){
+            score += card.getRank().ordinal() + 1;
+        }
+        return score;
+    }
 }

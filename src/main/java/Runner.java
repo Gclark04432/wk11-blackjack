@@ -9,8 +9,8 @@ public class Runner {
         Deck deck = new Deck();
         IScorer scorer = new PlayerScorerByRankOrder();
         Game game = new Game(deck, scorer);
-        System.out.println("Welcome to Draw Hi/Lo!");
-        System.out.println("How many players would you like to play?");
+        System.out.println("Welcome to Gary's Blackjack!");
+        System.out.println("How many players would like to play?");
 
         String input = scanner.next();
         int players = parseInt(input);
@@ -23,8 +23,8 @@ public class Runner {
             game.addPlayer(player);
         }
 
-        System.out.println("How many cards are we playing with?");
-        int noOfCards = parseInt(scanner.next());
+//        System.out.println("How many cards are we playing with?");
+//        int noOfCards = parseInt(scanner.next());
 
         game.start();
 
@@ -36,15 +36,23 @@ public class Runner {
             }
             System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
         }
-
-        if(game.checkDraw()){
-            System.out.println("It's a draw!");
-        } else {
-            Player winner = game.checkWinner();
-            String winnerName = winner.getName();
-            String output = String.format("%s wins!", winnerName);
-            System.out.println(output);
+        Dealer dealer = game.getDealer();
+        System.out.println("Dealer has:");
+        for(int i = 0; i < dealer.cardCount(); i ++){
+            System.out.println(dealer.showCard(i));
         }
+        System.out.println(String.format("Hand total: %s", scorer.getScore(dealer)));
+
+
+
+//        if(game.checkDraw()){
+//            System.out.println("It's a draw!");
+//        } else {
+//            Player winner = game.checkWinner();
+//            String winnerName = winner.getName();
+//            String output = String.format("%s wins!", winnerName);
+//            System.out.println(output);
+//        }
 
     }
 }
