@@ -42,6 +42,16 @@ public class Game {
         }
     }
 
+    public void twist(Player player){
+        Card card = deck.dealOne();
+        player.takeCard(card);
+    }
+
+    public void twist(Dealer dealer){
+        Card card = deck.dealOne();
+        dealer.takeCard(card);
+    }
+
     public boolean checkDraw(){
         Boolean drawGame = true;
         int dealerTotal = scorer.getScore(this.dealer);

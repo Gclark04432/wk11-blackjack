@@ -23,8 +23,6 @@ public class Runner {
             game.addPlayer(player);
         }
 
-//        System.out.println("How many cards are we playing with?");
-//        int noOfCards = parseInt(scanner.next());
 
         game.start();
 
@@ -33,6 +31,11 @@ public class Runner {
             System.out.println(output);
             for(int i = 0; i < player.cardCount(); i ++){
                 System.out.println(player.showCard(i));
+            }
+            System.out.println("Stick or Twist?");
+            String decision = scanner.next();
+            if (decision.equals("Stick")) {
+                game.twist(player);
             }
             System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
         }
