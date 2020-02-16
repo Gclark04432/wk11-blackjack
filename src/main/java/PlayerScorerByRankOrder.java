@@ -6,6 +6,11 @@ public class PlayerScorerByRankOrder implements IScorer {
             card.amendValueOfFaceCardsToTen();
             score += card.getRank().ordinal() + 1;
         }
+        for (Card cardInHand:player.getHand()){
+            if (cardInHand.getRank() == Rank.ACE && score <11){
+                score += 10;
+            }
+        }
         return score;
     }
 
@@ -14,6 +19,12 @@ public class PlayerScorerByRankOrder implements IScorer {
         for(Card card : dealer.getHand()){
             card.amendValueOfFaceCardsToTen();
             score += card.getRank().ordinal() + 1;
+
+        }
+        for (Card cardInHand:dealer.getHand()){
+            if (cardInHand.getRank() == Rank.ACE && score <11){
+                score += 10;
+            }
         }
         return score;
     }
