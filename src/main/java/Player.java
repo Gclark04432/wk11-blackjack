@@ -4,10 +4,12 @@ public class Player {
 
     private String name;
     private ArrayList<Card> hand;
+    public boolean active;
 
     public Player(String name) {
         this.name = name;
         this.hand = new ArrayList<Card>();
+        this.active = true;
     }
 
     public String getName() {
