@@ -25,26 +25,36 @@ public class Runner {
 
 
         game.start();
+        boolean active = true;
 
-        for(Player player: game.getPlayers()){
-            String output = String.format("%s has:", player.getName());
-            System.out.println(output);
-            for(int i = 0; i < player.cardCount(); i ++){
-                System.out.println(player.showCard(i));
-            }
-            System.out.println("Stick or Twist?");
-            String decision = scanner.next();
-            if (decision.equals("Stick")) {
-                game.twist(player);
-            }
-            System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
-        }
         Dealer dealer = game.getDealer();
-        System.out.println("Dealer has:");
-        for(int i = 0; i < dealer.cardCount(); i ++){
-            System.out.println(dealer.showCard(i));
+        System.out.println("Dealer has shows first card:");
+            System.out.println(dealer.showCard(0));
+
+        while (active == true) {
+            for (Player player : game.getPlayers()) {
+                String output = String.format("%s has:", player.getName());
+                System.out.println(output);
+                for (int i = 0; i < player.cardCount(); i++) {
+                    System.out.println(player.showCard(i));
+                }
+                System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
+                System.out.println("Stick or Twist?");
+                String decision = scanner.next();
+                if (decision.equals("Twist")) {
+                    game.twist(player);
+                } else {
+                    active = false;
+                }
+                System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
+            }
         }
-        System.out.println(String.format("Hand total: %s", scorer.getScore(dealer)));
+            System.out.println("Dealer shows cards: ");
+            for (int i = 0; i < dealer.cardCount(); i++) {
+                System.out.println(dealer.showCard(i));
+            }
+            System.out.println(String.format("Dealer's Hand total: %s", scorer.getScore(dealer)));
+
 
 
 
