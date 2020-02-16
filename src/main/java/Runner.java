@@ -63,6 +63,9 @@ public class Runner {
                 for (int i = 0; i < dealer.cardCount(); i++) {
                     System.out.println(dealer.showCard(i));
             }
+        if (scorer.isBust(dealer)) {
+            System.out.println("You are bust!");
+        }
             System.out.println(String.format("Dealer's Hand total: %s", scorer.getScore(dealer)));
 
 
