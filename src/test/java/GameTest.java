@@ -49,7 +49,7 @@ public class GameTest {
         player1.takeCard(highCard);
         player2.takeCard(highCard);
         dealer.takeCard(highCard);
-        assertTrue(game.checkDraw());
+        assertTrue(game.checkDraw(player1));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class GameTest {
         player1.takeCard(highCard);
         player2.takeCard(lowCard);
         dealer.takeCard(highCard);
-        assertEquals(false, game.checkDraw());
+        assertEquals(false, game.checkDraw(player2));
     }
 
     @Test

@@ -64,20 +64,20 @@ public class Runner {
                     System.out.println(dealer.showCard(i));
             }
         if (scorer.isBust(dealer)) {
-            System.out.println("You are bust!");
+            System.out.println("Dealer is bust!");
         }
             System.out.println(String.format("Dealer's Hand total: %s", scorer.getScore(dealer)));
 
 
 
-
-        if(game.checkDraw()){
-            System.out.println("It's a draw!");
-        } else {
+        for (Player player : game.getPlayers()) {
+            if (game.checkDraw(player)) {
+                System.out.println(String.format("%s draws with dealer", player.getName()));
+            }
+        }
             String winner = game.checkWinner();
             String output = String.format("%s wins!", winner);
             System.out.println(output);
-        }
-
+            
     }
 }

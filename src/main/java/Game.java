@@ -62,31 +62,28 @@ public class Game {
         return (dealer.cardCount() == 2 && scorer.getScore(dealer) == 21);
     }
 
-    public boolean checkDraw() {
-        Boolean drawGame = true;
+    public boolean checkDraw(Player player) {
         int dealerTotal = scorer.getScore(this.dealer);
-        for (Player player : this.players) {
-            int currentPlayerScore = scorer.getScore(player);
-            if (currentPlayerScore != dealerTotal) {
-                drawGame = false;
-            }
-        }
-        return drawGame;
+        int currentPlayerScore = scorer.getScore(player);
+        return currentPlayerScore == dealerTotal;
     }
 
     public String checkWinner() {
-        int highest = 0;
-        Player highestPlayer = null;
+        ArrayList<Player> winningPlayers = new ArrayList<Player>();
         for (Player player : this.players) {
-            int currentPlayerScore = scorer.getScore(player);
-            if (currentPlayerScore > highest) {
-                highest = currentPlayerScore;
-                highestPlayer = player;
+            int dealerScore = scorer.getScore(dealer);
+            int playerScore = scorer.getScore(player);
+            if (!scorer.isBust(player) && (playerScore > dealerScore || scorer.isBust(dealer))) {
+                winningPlayers.add(player);
             }
         }
-        if (!hasBlackJack(dealer) && !scorer.isBust(highestPlayer)) {
-                return highestPlayer.getName();
-            }
-        return "Dealer";
+        if (winningPlayers.size() == 0) {
+            return "Dealer";
+        }
+        String winners = "";
+        for (Player winningPlayer : winningPlayers) {
+            winners = winners + winningPlayer.getName();
+        }
+        return winners;
     }
 }
