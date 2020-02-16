@@ -17,4 +17,12 @@ public class PlayerScorerByRankOrder implements IScorer {
         }
         return score;
     }
+
+    public boolean isBust(Player player){
+        return getScore(player) > 21;
+    }
+
+    public boolean isBust(Dealer dealer){
+        return getScore(dealer) > 21;
+    }
 }

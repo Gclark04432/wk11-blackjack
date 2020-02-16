@@ -74,7 +74,7 @@ public class Game {
                 highestPlayer = player;
             }
         }
-        if (highest > scorer.getScore(dealer)) {
+        if (highest > scorer.getScore(dealer) && !scorer.isBust(highestPlayer)) {
             return highestPlayer.getName();
         }
         return "Dealer";

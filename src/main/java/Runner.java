@@ -38,12 +38,14 @@ public class Runner {
                         System.out.println(player.showCard(i));
                     }
                     System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
-                    System.out.println("Stick or Twist?");
+                    System.out.println("Stick(S) or Twist(T)?");
                     String decision = scanner.next();
-                    if (decision.equals("Twist")) {
+                    if (decision.equals("T")) {
                         game.twist(player);
-                    } else {
+                    } else if (decision.equals("S")) {
                         player.active = false;
+                    } else {
+                        System.out.println("Please enter valid selection (S/T");
                     }
                 }
         }
