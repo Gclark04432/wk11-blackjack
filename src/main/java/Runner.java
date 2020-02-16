@@ -48,8 +48,11 @@ public class Runner {
                 }
         }
             System.out.println("Dealer shows cards: ");
-            for (int i = 0; i < dealer.cardCount(); i++) {
-                System.out.println(dealer.showCard(i));
+            while (scorer.getScore(dealer) <16) {
+                game.twist(dealer);
+            }
+                for (int i = 0; i < dealer.cardCount(); i++) {
+                    System.out.println(dealer.showCard(i));
             }
             System.out.println(String.format("Dealer's Hand total: %s", scorer.getScore(dealer)));
 
