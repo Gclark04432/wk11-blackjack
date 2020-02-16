@@ -18,7 +18,9 @@ public class Game {
         return players;
     }
 
-    public Dealer getDealer() { return this.dealer; }
+    public Dealer getDealer() {
+        return this.dealer;
+    }
 
     public int playerCount() {
         return this.players.size();
@@ -42,20 +44,28 @@ public class Game {
         }
     }
 
-    public void twist(Player player){
+    public void twist(Player player) {
         Card card = deck.dealOne();
         player.takeCard(card);
     }
 
-    public void twist(Dealer dealer){
+    public void twist(Dealer dealer) {
         Card card = deck.dealOne();
         dealer.takeCard(card);
     }
 
-    public boolean checkDraw(){
+    public boolean hasBlackJack(Player player) {
+        return (player.cardCount() == 2 && scorer.getScore(player) == 21);
+    }
+
+    public boolean hasBlackJack(Dealer dealer) {
+        return (dealer.cardCount() == 2 && scorer.getScore(dealer) == 21);
+    }
+
+    public boolean checkDraw() {
         Boolean drawGame = true;
         int dealerTotal = scorer.getScore(this.dealer);
-        for (Player player:this.players) {
+        for (Player player : this.players) {
             int currentPlayerScore = scorer.getScore(player);
             if (currentPlayerScore != dealerTotal) {
                 drawGame = false;
@@ -64,19 +74,19 @@ public class Game {
         return drawGame;
     }
 
-    public String checkWinner(){
+    public String checkWinner() {
         int highest = 0;
         Player highestPlayer = null;
-        for(Player player : this.players){
+        for (Player player : this.players) {
             int currentPlayerScore = scorer.getScore(player);
-            if( currentPlayerScore > highest){
+            if (currentPlayerScore > highest) {
                 highest = currentPlayerScore;
                 highestPlayer = player;
             }
         }
-        if (highest > scorer.getScore(dealer) && !scorer.isBust(highestPlayer)) {
-            return highestPlayer.getName();
-        }
+        if (!hasBlackJack(dealer) && !scorer.isBust(highestPlayer)) {
+                return highestPlayer.getName();
+            }
         return "Dealer";
     }
 }

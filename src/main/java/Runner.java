@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
+
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
@@ -38,6 +40,11 @@ public class Runner {
                         System.out.println(player.showCard(i));
                     }
                     System.out.println(String.format("Hand total: %s", scorer.getScore(player)));
+                    if (scorer.isBust(player)){
+                        System.out.println("You are bust!");
+                        player.active = false;
+                        break;
+                    }
                     System.out.println("Stick(S) or Twist(T)?");
                     String decision = scanner.next();
                     if (decision.equals("T")) {
