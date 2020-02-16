@@ -54,16 +54,19 @@ public class Game {
         return drawGame;
     }
 
-    public Player checkWinner(){
+    public String checkWinner(){
         int highest = 0;
-        Player winner = null;
+        Player highestPlayer = null;
         for(Player player : this.players){
             int currentPlayerScore = scorer.getScore(player);
             if( currentPlayerScore > highest){
                 highest = currentPlayerScore;
-                winner = player;
+                highestPlayer = player;
             }
         }
-        return winner;
+        if (highest > scorer.getScore(dealer)) {
+            return highestPlayer.getName();
+        }
+        return "Dealer";
     }
 }
