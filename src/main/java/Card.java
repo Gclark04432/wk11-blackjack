@@ -16,9 +16,13 @@ public class Card {
         return rank;
     }
 
-    public boolean isFaceCard(){
-        return this.rank.getIsFaceCard();
+    public Rank amendValueOfFaceCardsToTen() {
+        if (this.rank.getIsFaceCard()) {
+            this.rank = Rank.TEN;
+        }
+        return this.rank;
     }
+
 
     public String cardName(){
         return String.format("%s of %s", this.rank, this.suit);

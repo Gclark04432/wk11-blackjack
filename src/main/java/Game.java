@@ -32,6 +32,7 @@ public class Game {
         for (Player player : this.players) {
             for (int i = 0; i < 2; i++) {
                 Card card = deck.dealOne();
+                card.amendValueOfFaceCardsToTen();
                 player.takeCard(card);
             }
         }
@@ -41,30 +42,28 @@ public class Game {
         }
     }
 
+    public boolean checkDraw(){
+        boolean drawgame = true;
+        int handTotal = scorer.getScore(this.players.get(0));
+        for(Player player: this.players){
+            int currentPlayerScore = scorer.getScore(player);
+            if(currentPlayerScore != handTotal){
+                drawgame = false;
+            }
+        }
+        return drawgame;
+    }
+
+    public Player checkWinner(){
+        int highest = 0;
+        Player winner = null;
+        for(Player player : this.players){
+            int currentPlayerScore = scorer.getScore(player);
+            if( currentPlayerScore > highest){
+                highest = currentPlayerScore;
+                winner = player;
+            }
+        }
+        return winner;
+    }
 }
-
-//    public boolean checkDraw(){
-//        boolean drawgame = true;
-//        int handTotal = scorer.getScore(this.players.get(0));
-//        for(Player player: this.players){
-//            int currentPlayerScore = scorer.getScore(player);
-//            if(currentPlayerScore != handTotal){
-//                drawgame = false;
-//            }
-//        }
-//        return drawgame;
-//    }
-
-//    public Player checkWinner(){
-//        int highest = 0;
-//        Player winner = null;
-//        for(Player player : this.players){
-//            int currentPlayerScore = scorer.getScore(player);
-//            if( currentPlayerScore > highest){
-//                highest = currentPlayerScore;
-//                winner = player;
-//            }
-//        }
-//        return winner;
-//    }
-//}
