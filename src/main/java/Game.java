@@ -43,8 +43,15 @@ public class Game {
     }
 
     public boolean checkDraw(){
+        Boolean drawGame = true;
         int dealerTotal = scorer.getScore(this.dealer);
-        return scorer.getScore(this.players.get(0)) == dealerTotal;
+        for (Player player:this.players) {
+            int currentPlayerScore = scorer.getScore(player);
+            if (currentPlayerScore != dealerTotal) {
+                drawGame = false;
+            }
+        }
+        return drawGame;
     }
 
     public Player checkWinner(){

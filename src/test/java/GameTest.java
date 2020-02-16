@@ -47,8 +47,17 @@ public class GameTest {
     @Test
     public void gameCanCheckDraw(){
         player1.takeCard(highCard);
+        player2.takeCard(highCard);
         dealer.takeCard(highCard);
         assertTrue(game.checkDraw());
+    }
+
+    @Test
+    public void gameCanCheckDrawAgainstMultiplePlayersAndDealer(){
+        player1.takeCard(highCard);
+        player2.takeCard(lowCard);
+        dealer.takeCard(highCard);
+        assertEquals(false, game.checkDraw());
     }
 
     @Test
@@ -66,9 +75,11 @@ public class GameTest {
     }
 
     @Test
-    public void gameCanStartWithOneDealerAndOnePlayer() {
-//        game.start();
-//        assertEquals(2, dealer.cardCount());
+    public void gameCanStartWithMultiplePlayers() {
+        game.start();
+        assertEquals(2, dealer.cardCount());
+        assertEquals(2, player1.cardCount());
+        assertEquals(2, player2.cardCount());
     }
 
 }
