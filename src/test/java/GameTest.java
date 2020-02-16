@@ -13,6 +13,7 @@ public class GameTest {
     Card highCard;
     Card lowCard;
     IScorer scorer;
+    Dealer dealer;
 
     @Before
     public void setup(){
@@ -26,6 +27,8 @@ public class GameTest {
 
         highCard = new Card(Suit.SPADES, Rank.KING);
         lowCard = new Card(Suit.SPADES, Rank.TWO);
+
+        dealer = game.getDealer();
     }
 
 
@@ -41,26 +44,19 @@ public class GameTest {
         assertEquals(2, player2.cardCount());
     }
 
-//    @Test
-//    public void gameCanDealMultipleCards(){
-//        game.start(20);
-//        assertEquals(20, player1.cardCount());
-//        assertEquals(20, player2.cardCount());
-//    }
-//
-//    @Test
-//    public void gameCanCheckDraw(){
-//        player1.takeCard(highCard);
-//        player2.takeCard(highCard);
-//        assertTrue(game.checkDraw());
-//    }
+    @Test
+    public void gameCanCheckDraw(){
+        player1.takeCard(highCard);
+        dealer.takeCard(highCard);
+        assertTrue(game.checkDraw());
+    }
 
-//    @Test
-//    public void gameCanCheckWinner(){
-//        player1.takeCard(highCard);
-//        player2.takeCard(lowCard);
-//        assertEquals(player1, game.checkWinner());
-////    }
+    @Test
+    public void gameCanCheckWinner(){
+        player1.takeCard(highCard);
+        player2.takeCard(lowCard);
+        assertEquals(player1, game.checkWinner());
+    }
 
     @Test
     public void playerStartsWith2Cards() {
@@ -69,10 +65,10 @@ public class GameTest {
         assertEquals(2, player2.cardCount());
     }
 
-//    @Test
-//    public void gameCanStartWithOneDealerAndOnePlayer() {
-////        game.start();
-////        assertEquals(2, dealer.cardCount());
-//    }
+    @Test
+    public void gameCanStartWithOneDealerAndOnePlayer() {
+//        game.start();
+//        assertEquals(2, dealer.cardCount());
+    }
 
 }

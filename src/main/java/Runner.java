@@ -45,14 +45,14 @@ public class Runner {
 
 
 
-//        if(game.checkDraw()){
-//            System.out.println("It's a draw!");
-//        } else {
-//            Player winner = game.checkWinner();
-//            String winnerName = winner.getName();
-//            String output = String.format("%s wins!", winnerName);
-//            System.out.println(output);
-//        }
+        if(game.checkDraw()){
+            System.out.println("It's a draw!");
+        } else {
+            Player winner = game.checkWinner();
+            String winnerName = winner.getName();
+            String output = String.format("%s wins!", winnerName);
+            System.out.println(output);
+        }
 
     }
 }
